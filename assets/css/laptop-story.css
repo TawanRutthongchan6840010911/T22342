@@ -1,0 +1,515 @@
+/* ตัวอย่างฟีเจอร์แรก: ระยะเลื่อนควบคุมฝาโน้ตบุ๊กและมุมกล้อง */
+.protector-story {
+  --story-top: 110px;
+  --open-progress: 0;
+  position: relative;
+  height: 245vh;
+  height: 245svh;
+  background: #090a0c;
+  border-bottom: 1px solid var(--line);
+}
+.story-stage {
+  position: sticky;
+  top: var(--story-top);
+  height: calc(100vh - var(--story-top));
+  height: calc(100svh - var(--story-top));
+  min-height: 540px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 0 22px;
+  isolation: isolate;
+}
+.story-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 50% 65%, #ff653710, transparent 55%),
+    linear-gradient(90deg, #ffffff02 1px, transparent 1px),
+    linear-gradient(#ffffff02 1px, transparent 1px);
+  background-size:
+    auto,
+    88px 88px,
+    88px 88px;
+  mask-image: linear-gradient(transparent, black 30%, black 85%, transparent);
+}
+.story-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+.story-heading .eyebrow {
+  margin-bottom: 10px;
+}
+.story-heading h3 {
+  font-size: clamp(26px, 3vw, 40px);
+  margin: 0;
+}
+.story-skip {
+  color: #a6a9ad;
+  font-size: 12px;
+  border-bottom: 1px solid #4b4e52;
+  padding-bottom: 5px;
+  margin-top: 8px;
+}
+
+/* พื้นที่ 3D: ฝาและฐานหมุนรอบบานพับเดียวกัน ไม่มีไฟล์โมเดลภายนอก */
+.laptop-scene {
+  --laptop-width: min(62vw, 750px, calc((100svh - var(--story-top) - 180px) * 1.2));
+  --laptop-height: calc(var(--laptop-width) * 0.6);
+  flex: 1;
+  width: 100%;
+  position: relative;
+  perspective: 1800px;
+  perspective-origin: 50% 42%;
+}
+.laptop-model {
+  width: var(--laptop-width);
+  height: var(--laptop-height);
+  position: absolute;
+  left: calc(50% - var(--laptop-width) / 2);
+  top: 44%;
+  margin-top: calc(var(--laptop-height) * -0.5);
+  transform-style: preserve-3d;
+  transform: translateY(calc(var(--laptop-width) * var(--device-y-factor, -0.24)))
+    rotateX(var(--device-pitch, -28deg))
+    rotateY(calc(var(--device-yaw, -32deg) * var(--yaw-strength, 1)))
+    rotateZ(var(--device-roll, -8deg)) scale(var(--device-scale, 0.88));
+  will-change: transform;
+}
+.laptop-lid {
+  position: absolute;
+  inset: 0;
+  transform-origin: center bottom;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--lid-angle, -89deg));
+  will-change: transform;
+}
+.lid-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 17px 17px 5px 5px;
+}
+.lid-front {
+  padding: 3.2% 2.2% 4.2%;
+  background: linear-gradient(125deg, #45494f, #17191d 25%, #23262b 75%, #4b4d52);
+  border: 1px solid #737880;
+  box-shadow: inset 0 0 0 3px #111215;
+  transform: translateZ(1px);
+}
+.lid-camera {
+  position: absolute;
+  left: calc(50% - 2px);
+  top: 2%;
+  width: 4px;
+  height: 4px;
+  background: #08090b;
+  border: 1px solid #61656a;
+  border-radius: 50%;
+}
+.lid-wordmark {
+  position: absolute;
+  bottom: 1.2%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font:
+    8px 'Courier New',
+    monospace;
+  letter-spacing: 4px;
+  color: #b5b9c0;
+}
+.lid-back {
+  transform: translateZ(-8px) rotateY(180deg);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 20px;
+  color: #ff6537;
+  background:
+    linear-gradient(135deg, transparent 48%, #ffffff08 48.2%, transparent 75%),
+    linear-gradient(135deg, #33373d, #131619 60%, #2b3036);
+  border: 1px solid #636a73;
+  box-shadow:
+    inset 0 0 0 3px #ffffff03,
+    0 0 0 3px #111;
+}
+.lid-back svg {
+  width: 11%;
+  min-width: 35px;
+  filter: drop-shadow(0 0 12px #ff653740);
+}
+.lid-back span {
+  font:
+    700 clamp(9px, 1vw, 13px) Arial,
+    sans-serif;
+  letter-spacing: 6px;
+}
+.laptop-display {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background: #0d1118;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.laptop-display::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 90%, #ff65372c, transparent 75%),
+    linear-gradient(120deg, #ffffff04, transparent 35%, #ff653708 70%, transparent),
+    repeating-linear-gradient(90deg, transparent 0 40px, #ffffff03 40px 41px);
+}
+.screen-content {
+  position: relative;
+  width: 100%;
+  padding: 4% 9%;
+  text-align: center;
+  opacity: var(--screen-opacity, 0);
+}
+.screen-brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #bfc4cc;
+  font:
+    10px 'Courier New',
+    monospace;
+  letter-spacing: 2px;
+  margin-bottom: 5%;
+}
+.screen-brand b {
+  color: var(--accent);
+  font:
+    900 15px Arial,
+    sans-serif;
+  letter-spacing: 3px;
+}
+.screen-title {
+  display: block;
+  color: #f6f3ee;
+  font-weight: 700;
+  font-size: clamp(23px, 4vw, 55px);
+  line-height: 1.4;
+}
+.screen-description {
+  color: #b1b6bf;
+  font-size: clamp(8px, 1.1vw, 14px);
+  margin-top: 2%;
+}
+.screen-profiles {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  margin-top: 5%;
+}
+.screen-profile {
+  position: relative;
+  width: 22%;
+  aspect-ratio: 1.3;
+  border: 1px solid #67707d65;
+  background: #ffffff04;
+}
+.screen-profile::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 22%;
+  height: 26%;
+  border-radius: 50%;
+  left: 39%;
+  top: 15%;
+  background: #65707c;
+}
+.screen-profile::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 55%;
+  height: 30%;
+  border-radius: 60% 60% 0 0;
+  left: 22.5%;
+  top: 44%;
+  background: #495563;
+}
+.screen-profile.selected {
+  border-color: #ff815b;
+  background: #ff65370b;
+  box-shadow: 0 0 30px #ff653715;
+}
+.screen-profile span {
+  display: block;
+  position: absolute;
+  bottom: 6%;
+  font: clamp(5px, 0.7vw, 10px) monospace;
+  color: #c3c8d0;
+  white-space: nowrap;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+}
+.screen-profile i {
+  position: absolute;
+  right: -6px;
+  top: -7px;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #101112;
+  font: 12px Arial;
+  font-style: normal;
+}
+
+/* ฐาน แป้นพิมพ์ และขอบเครื่อง เป็นพื้นผิวสามมิติแยกจากฝาจอ */
+.laptop-deck,
+.laptop-bottom {
+  position: absolute;
+  top: 100%;
+  left: -2%;
+  width: 104%;
+  height: var(--laptop-height);
+  transform: rotateX(90deg);
+  transform-origin: center top;
+  backface-visibility: hidden;
+  border: 1px solid #7c828b;
+  border-radius: 4px 4px 13px 13px;
+  background: linear-gradient(110deg, #454b53, #252a30 35%, #353b43 80%, #555c65);
+}
+.laptop-bottom {
+  margin-top: 11px;
+  background: #12161a;
+  backface-visibility: visible;
+}
+.laptop-speakers {
+  position: absolute;
+  top: 5%;
+  left: 8%;
+  width: 84%;
+  height: 3%;
+  border-radius: 12px;
+  background: repeating-linear-gradient(90deg, #06080b 0 2px, #30363e 2px 4px);
+}
+.laptop-keyboard {
+  position: absolute;
+  left: 8%;
+  top: 14%;
+  width: 84%;
+  height: 45%;
+  border: 5px solid #191e24;
+  border-radius: 7px;
+  background: #10151a;
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 4px;
+  padding: 4px;
+  box-shadow: 0 0 12px #ff653724;
+}
+.laptop-keyboard span {
+  border: 1px solid #655b53;
+  border-bottom-color: #b16c4b;
+  border-radius: 3px;
+  background: linear-gradient(#363d46, #1d222a);
+}
+.laptop-trackpad {
+  position: absolute;
+  left: 33%;
+  top: 67%;
+  width: 34%;
+  height: 25%;
+  border: 1px solid #737b85;
+  border-radius: 5px;
+  background: #292f37;
+}
+.laptop-front-edge {
+  position: absolute;
+  top: 100%;
+  left: -2%;
+  width: 104%;
+  height: 12px;
+  transform: translateZ(var(--laptop-height));
+  border-radius: 0 0 12px 12px;
+  background: linear-gradient(#777f88, #292e36 35%, #12161b 90%);
+  border-bottom: 1px solid #d0926e;
+}
+.laptop-front-edge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 43%;
+  width: 14%;
+  height: 4px;
+  border-radius: 0 0 6px 6px;
+  background: #15191e;
+}
+.story-floor {
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: 3%;
+  height: 10%;
+  border-radius: 50%;
+  background: #0009;
+  filter: blur(18px);
+  z-index: -1;
+}
+.story-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+.story-footer p {
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+.story-progress {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #858c96;
+  font:
+    10px 'Courier New',
+    monospace;
+  letter-spacing: 1px;
+}
+.story-progress-track {
+  width: 120px;
+  height: 2px;
+  background: #454b53;
+}
+.story-progress-track span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(var(--open-progress));
+}
+.story-footer .text-link {
+  white-space: nowrap;
+}
+@media (max-width: 991.98px) {
+  .laptop-scene {
+    --laptop-width: min(76vw, 660px);
+  }
+}
+@media (max-width: 575.98px) {
+  .protector-story {
+    height: 210svh;
+  }
+  .story-stage {
+    min-height: 460px;
+    padding-top: 24px;
+    padding-bottom: 26px;
+  }
+  .story-heading {
+    align-items: center;
+  }
+  .story-heading .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .story-heading h3 {
+    font-size: 25px;
+  }
+  .story-skip {
+    font-size: 10px;
+  }
+  .laptop-scene {
+    --laptop-width: 78vw;
+    --yaw-strength: 0.5;
+    perspective: 1000px;
+  }
+  .laptop-model {
+    top: 47%;
+  }
+  .lid-face {
+    border-radius: 9px 9px 3px 3px;
+  }
+  .lid-back {
+    gap: 10px;
+  }
+  .lid-wordmark {
+    font-size: 4px;
+    letter-spacing: 2px;
+  }
+  .screen-brand {
+    font-size: 4px;
+    letter-spacing: 1px;
+  }
+  .screen-brand b {
+    font-size: 8px;
+  }
+  .laptop-keyboard {
+    gap: 2px;
+    padding: 2px;
+    border-width: 2px;
+  }
+  .laptop-keyboard span {
+    border-radius: 1px;
+  }
+  .laptop-trackpad {
+    border-radius: 2px;
+  }
+  .screen-profile i {
+    height: 12px;
+    width: 12px;
+    font-size: 8px;
+  }
+  .story-footer {
+    display: block;
+  }
+  .story-footer p {
+    font-size: 12px;
+  }
+  .story-footer .text-link {
+    margin-top: 20px;
+    font-size: 12px;
+  }
+}
+
+/* แสดงเครื่องที่กางแล้วทันที หากลดการเคลื่อนไหวหรือปิด JavaScript */
+.protector-story:not(.is-scroll-ready),
+.protector-story.is-reduced-motion {
+  height: auto;
+}
+.protector-story:not(.is-scroll-ready) .story-stage,
+.protector-story.is-reduced-motion .story-stage {
+  position: relative;
+  top: auto;
+  height: 720px;
+  max-height: none;
+}
+.protector-story:not(.is-scroll-ready) .laptop-model,
+.protector-story.is-reduced-motion .laptop-model {
+  transform: rotateX(-13deg);
+}
+.protector-story:not(.is-scroll-ready) .laptop-lid,
+.protector-story.is-reduced-motion .laptop-lid {
+  transform: rotateX(-4deg);
+}
+.protector-story:not(.is-scroll-ready) .screen-content,
+.protector-story.is-reduced-motion .screen-content {
+  opacity: 1;
+}
+.protector-story:not(.is-scroll-ready) .story-progress,
+.protector-story.is-reduced-motion .story-progress {
+  display: none;
+}

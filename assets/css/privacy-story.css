@@ -1,0 +1,319 @@
+/* ฟีเจอร์ที่ 3: ภาพ Albert เข้าจากซ้าย และเฟดเปลี่ยนท่าทีละเฟรม */
+.privacy-story {
+  --privacy-top: 110px;
+  --privacy-background: 0;
+  --privacy-shift: -115%;
+  --privacy-entry: 0;
+  --privacy-pose-two: 0;
+  --privacy-pose-three: 0;
+  position: relative;
+  height: 300vh;
+  height: 300svh;
+  background: #0c0a12;
+  border-bottom: 1px solid var(--line);
+}
+.privacy-stage {
+  position: sticky;
+  top: var(--privacy-top);
+  height: calc(100vh - var(--privacy-top));
+  height: calc(100svh - var(--privacy-top));
+  min-height: 540px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.privacy-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  opacity: var(--privacy-background);
+}
+.privacy-film {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+}
+.privacy-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    linear-gradient(270deg, #0c0a12f5 0%, #0c0a12df 32%, #17102070 65%, #160b1f55),
+    linear-gradient(0deg, #0c0a12 0%, transparent 30%, transparent 80%, #0c0a1280);
+}
+.privacy-stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 20% 50%, #bd90ff16, transparent 65%);
+}
+.privacy-content {
+  position: relative;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 30px;
+  padding-bottom: 26px;
+  pointer-events: none;
+}
+.privacy-content a,
+.privacy-content button {
+  pointer-events: auto;
+}
+.privacy-kicker,
+.privacy-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.privacy-kicker .eyebrow {
+  color: #d3bdf0;
+  margin: 0;
+}
+.privacy-kicker .eyebrow::before {
+  background: #d3bdf0;
+}
+.privacy-count,
+.privacy-controls {
+  color: #b0a3c3;
+  font:
+    10px 'Courier New',
+    monospace;
+  letter-spacing: 1px;
+}
+.privacy-copy {
+  width: 47%;
+  align-self: flex-end;
+  margin-top: -20px;
+}
+.privacy-copy .mono {
+  display: block;
+  color: #ad97c5;
+  font-size: 10px;
+  margin-bottom: 23px;
+}
+.privacy-copy h3 {
+  color: #f5f2f7;
+  font-size: clamp(37px, 4.3vw, 64px);
+  line-height: 1.45;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 23px;
+  text-shadow: 0 3px 25px #0009;
+}
+.privacy-copy h3 span {
+  color: #d3b2f4;
+}
+.privacy-copy p {
+  color: #c4bacf;
+  max-width: 370px;
+  font-size: 15px;
+  line-height: 1.9;
+  margin-bottom: 28px;
+}
+.privacy-copy .text-link {
+  color: #f0e9f7;
+  border-color: #b69ac76b;
+}
+.privacy-copy .text-link:hover {
+  color: #d3b2f4;
+}
+
+/* เฟรมจริง 3 รูปใช้ตำแหน่งและขนาดเดียวกัน เพื่อให้ crossfade ต่อเนื่อง */
+.privacy-portraits {
+  position: absolute;
+  left: -2%;
+  bottom: 3%;
+  width: 60%;
+  height: 88%;
+  z-index: 1;
+  margin: 0;
+  opacity: var(--privacy-entry);
+  transform: translate3d(var(--privacy-shift), 0, 0);
+  will-change: transform, opacity;
+  pointer-events: none;
+  /* เฟดขอบภาพต้นฉบับเข้ากับฉาก โดยไม่เปลี่ยนใบหน้าหรือท่าทาง */
+  mask-image: radial-gradient(
+    ellipse closest-side at 50% 50%,
+    #000 60%,
+    #000b 78%,
+    transparent 100%
+  );
+}
+.privacy-portraits::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: linear-gradient(90deg, transparent 55%, #0c0a1255 78%, #0c0a12 100%);
+  pointer-events: none;
+}
+.privacy-pose {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  filter: saturate(0.55) contrast(1.08) brightness(0.82);
+  opacity: 1;
+  will-change: opacity;
+}
+.privacy-pose-two {
+  opacity: var(--privacy-pose-two);
+}
+.privacy-pose-three {
+  opacity: var(--privacy-pose-three);
+}
+.privacy-pose-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 26px;
+  color: #9c8ba9;
+  font:
+    10px 'Courier New',
+    monospace;
+  letter-spacing: 1px;
+}
+.privacy-pose-status span[data-pose-marker] {
+  height: 2px;
+  width: 33px;
+  background: #7c6b8959;
+}
+.privacy-pose-status span.is-active {
+  background: #d3b2f4;
+}
+.privacy-pose-status small {
+  margin-left: 8px;
+  font-size: 10px;
+}
+.privacy-motion-toggle {
+  min-height: 44px;
+  padding: 10px 15px;
+  border: 1px solid #c0a1dc47;
+  background: #1a1322aa;
+  color: #d9c6e9;
+  border-radius: 2px;
+  font: 11px var(--bs-body-font-family);
+}
+.privacy-motion-toggle:hover {
+  background: #332341cc;
+  border-color: #c5a1e6;
+}
+.privacy-motion-toggle[hidden],
+.privacy-film[hidden] {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .privacy-story {
+    height: 285svh;
+  }
+  .privacy-stage {
+    min-height: 620px;
+  }
+  .privacy-content {
+    padding-top: 24px;
+    padding-bottom: 18px;
+  }
+  .privacy-kicker .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .privacy-count {
+    font-size: 9px;
+  }
+  .privacy-copy {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    left: 20px;
+    width: auto;
+    margin-top: 0;
+    text-align: right;
+  }
+  .privacy-copy .mono {
+    display: none;
+  }
+  .privacy-copy h3 {
+    font-size: clamp(29px, 7vw, 40px);
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+  .privacy-copy h3 br {
+    display: none;
+  }
+  .privacy-copy h3 span::before {
+    content: ' ';
+  }
+  .privacy-copy p {
+    margin-left: auto;
+    max-width: 285px;
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  .privacy-copy .text-link {
+    font-size: 12px;
+  }
+  .privacy-pose-status {
+    margin-top: 17px;
+    justify-content: flex-end;
+  }
+  .privacy-portraits {
+    left: -6%;
+    bottom: 55px;
+    height: 55%;
+    width: 108%;
+  }
+  .privacy-stage::before {
+    background:
+      linear-gradient(180deg, #0c0a12ed 0%, #0c0a12d9 32%, #190d2033 60%, #0c0a12 100%),
+      linear-gradient(270deg, #0c0a1255, transparent 70%);
+  }
+  .privacy-controls {
+    font-size: 8px;
+    gap: 10px;
+  }
+  .privacy-controls > span {
+    max-width: 140px;
+    line-height: 1.8;
+  }
+}
+
+@media (max-width: 359.98px) {
+  .privacy-portraits {
+    height: 47%;
+  }
+}
+
+/* ภาพนิ่งเริ่มต้นสำหรับผู้ใช้ที่ลดการเคลื่อนไหวหรือปิด JavaScript */
+.privacy-story:not(.is-scroll-ready),
+.privacy-story.is-reduced-motion {
+  height: auto;
+  --privacy-shift: 0%;
+  --privacy-entry: 1;
+}
+.privacy-story:not(.is-scroll-ready) .privacy-stage,
+.privacy-story.is-reduced-motion .privacy-stage {
+  position: relative;
+  top: auto;
+  height: 780px;
+}
+.privacy-story.is-reduced-motion .privacy-portraits {
+  opacity: 1;
+  transform: none;
+}
+.privacy-story.is-reduced-motion .privacy-pose-two,
+.privacy-story.is-reduced-motion .privacy-pose-three,
+.privacy-story.is-reduced-motion .privacy-backdrop,
+.privacy-story.is-reduced-motion .privacy-motion-toggle {
+  display: none;
+}
