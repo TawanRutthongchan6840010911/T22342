@@ -1648,3 +1648,113 @@ noscript {
     transform: none;
   }
 }
+
+/* ทีมผู้จัดทำ: จัดใบหน้าและตกแต่งช่องมองภาพกล้อง */
+#team .member-card .team-camera {
+  height: auto;
+  aspect-ratio: 4 / 5;
+  isolation: isolate;
+  background: #101112;
+}
+#team .team-camera > img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--team-position, center 35%);
+}
+#team .row > :nth-child(1) .team-camera {
+  --team-position: 64% center;
+}
+#team .row > :nth-child(2) .team-camera {
+  --team-position: center 16%;
+}
+#team .row > :nth-child(3) .team-camera {
+  --team-position: 62% top;
+}
+#team .row > :nth-child(4) .team-camera {
+  --team-position: 65% top;
+}
+/* รูปต้นฉบับคนที่ 5 เป็นวงกลม: ขยายให้ขอบดำเดิมพ้นกรอบ */
+#team .row > :nth-child(5) .team-camera > img {
+  transform: scale(1.35);
+}
+#team .team-camera::before {
+  z-index: 2;
+  inset: 14px;
+  border: 0;
+  clip-path: none;
+  background:
+    linear-gradient(#ffffffb3, #ffffffb3) left top / 22px 2px,
+    linear-gradient(#ffffffb3, #ffffffb3) left top / 2px 22px,
+    linear-gradient(#ffffffb3, #ffffffb3) right top / 22px 2px,
+    linear-gradient(#ffffffb3, #ffffffb3) right top / 2px 22px,
+    linear-gradient(#ffffffb3, #ffffffb3) left bottom / 22px 2px,
+    linear-gradient(#ffffffb3, #ffffffb3) left bottom / 2px 22px,
+    linear-gradient(#ffffffb3, #ffffffb3) right bottom / 22px 2px,
+    linear-gradient(#ffffffb3, #ffffffb3) right bottom / 2px 22px;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+#team .team-camera::after {
+  z-index: 1;
+  background: linear-gradient(180deg, #0006, transparent 28%, transparent 72%, #0009);
+}
+.camera-hud {
+  position: absolute;
+  z-index: 3;
+  inset: 27px;
+  pointer-events: none;
+  color: #fff;
+  font:
+    10px/1.4 'Courier New',
+    monospace;
+  letter-spacing: 1.5px;
+  text-shadow: 0 1px 5px #000;
+}
+.camera-label,
+.camera-rec,
+.camera-format,
+.camera-status {
+  position: absolute;
+}
+.camera-label {
+  top: 0;
+  left: 0;
+}
+.camera-rec {
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.camera-rec i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px #ff653780;
+}
+.camera-format {
+  bottom: 0;
+  left: 0;
+}
+.camera-status {
+  bottom: 0;
+  right: 0;
+  font-size: 8px;
+}
+.camera-focus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 42px;
+  height: 36px;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ffffff40;
+  border-radius: 3px;
+}
