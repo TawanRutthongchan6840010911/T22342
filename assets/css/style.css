@@ -1,4 +1,4 @@
-@import url('fonts.css');
+@import url("fonts.css");
 
 /* สีหลักและค่าพื้นฐานของเว็บไซต์ */
 :root {
@@ -12,7 +12,7 @@
   --bs-body-bg: var(--bg);
   --bs-body-color: var(--text);
   --bs-border-color: var(--line);
-  --bs-body-font-family: 'Noto Sans Thai', Tahoma, Arial, sans-serif;
+  --bs-body-font-family: "Noto Sans Thai", Tahoma, Arial, sans-serif;
   --bs-link-color: var(--text);
 }
 
@@ -90,7 +90,7 @@ p {
 }
 .eyebrow,
 .mono {
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -103,7 +103,7 @@ p {
   gap: 11px;
 }
 .eyebrow:before {
-  content: '';
+  content: "";
   height: 6px;
   width: 6px;
   background: var(--accent);
@@ -220,7 +220,7 @@ p {
 .brand-tag {
   display: block;
   font:
-    8px/1.5 'Courier New',
+    8px/1.5 "Courier New",
     monospace;
   letter-spacing: 1.8px;
   color: var(--muted);
@@ -245,7 +245,7 @@ p {
   color: var(--text);
 }
 .nav-link.active:after {
-  content: '';
+  content: "";
   display: block;
   background: var(--accent);
   height: 2px;
@@ -286,7 +286,7 @@ p {
   border-radius: 2px;
 }
 .nav-toggle:hover,
-.nav-toggle[aria-expanded='true'] {
+.nav-toggle[aria-expanded="true"] {
   color: var(--accent);
   background: #ffffff08;
 }
@@ -307,7 +307,7 @@ p {
 .nav-number {
   color: #7d8389;
   font:
-    10px 'Courier New',
+    10px "Courier New",
     monospace;
   align-self: flex-start;
   padding-top: 5px;
@@ -318,7 +318,7 @@ p {
   transition: transform 0.2s;
 }
 .nav-main::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 25px;
   right: 0;
@@ -330,15 +330,15 @@ p {
   transition: transform 0.2s;
 }
 .nav-main.is-current,
-.nav-heading:has(.nav-toggle[aria-expanded='true']) .nav-main,
+.nav-heading:has(.nav-toggle[aria-expanded="true"]) .nav-main,
 .nav-main:hover {
   color: var(--text);
 }
 .nav-main.is-current::after,
-.nav-heading:has(.nav-toggle[aria-expanded='true']) .nav-main::after {
+.nav-heading:has(.nav-toggle[aria-expanded="true"]) .nav-main::after {
   transform: scaleX(1);
 }
-.nav-toggle[aria-expanded='true'] .nav-chevron {
+.nav-toggle[aria-expanded="true"] .nav-chevron {
   transform: rotate(180deg);
 }
 .nav-prism-panel {
@@ -358,24 +358,37 @@ p {
   display: none;
 }
 .nav-prism-panel::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
   background:
     linear-gradient(116deg, transparent 25%, #c8c8ff0d 25.2%, transparent 52%),
-    linear-gradient(65deg, #8dcfff10, transparent 35%, #e4b5ff0c 65%, #ff9d6d10),
+    linear-gradient(
+      65deg,
+      #8dcfff10,
+      transparent 35%,
+      #e4b5ff0c 65%,
+      #ff9d6d10
+    ),
     linear-gradient(165deg, #ffffff09, transparent 55%);
 }
 .nav-prism-panel::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #9dcffb70, #e7c6ff60, #ffac7c70, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #9dcffb70,
+    #e7c6ff60,
+    #ffac7c70,
+    transparent
+  );
   pointer-events: none;
 }
 .nav-prism-content {
@@ -571,11 +584,16 @@ p {
   filter: saturate(0.45);
 }
 .hero-image:after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, var(--bg) 0%, rgba(16, 17, 18, 0.35) 30%, transparent 65%),
+    linear-gradient(
+      90deg,
+      var(--bg) 0%,
+      rgba(16, 17, 18, 0.35) 30%,
+      transparent 65%
+    ),
     linear-gradient(0deg, var(--bg), transparent 30%);
 }
 .hero-stamp {
@@ -592,7 +610,7 @@ p {
   display: block;
   letter-spacing: 2px;
   font:
-    700 14px/1.6 'Courier New',
+    700 14px/1.6 "Courier New",
     monospace;
 }
 .hero-bottom {
@@ -601,13 +619,13 @@ p {
   gap: 30px;
   margin-top: 45px;
   font:
-    10px 'Courier New',
+    10px "Courier New",
     monospace;
   letter-spacing: 1.4px;
   color: #bcbdbf;
 }
 .hero-bottom span:before {
-  content: '+';
+  content: "+";
   color: var(--accent);
   margin-right: 8px;
 }
@@ -623,7 +641,7 @@ p {
   padding-top: 19px;
   padding-bottom: 19px;
   font:
-    11px 'Courier New',
+    11px "Courier New",
     monospace;
   letter-spacing: 1.5px;
   color: #b4b6b8;
@@ -704,12 +722,17 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse at 50% 100%, #303438 0%, #1d2023 50%, #181a1c 100%);
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    #303438 0%,
+    #1d2023 50%,
+    #181a1c 100%
+  );
   border-bottom: 1px solid var(--line);
 }
 .portrait:before,
 .portrait:after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 17px;
   border: 1px solid #3a3d40;
@@ -748,7 +771,12 @@ p {
   inset: 0;
   border: 0;
   clip-path: none;
-  background: repeating-linear-gradient(0deg, transparent, transparent 4px, #ffffff02 5px);
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 4px,
+    #ffffff02 5px
+  );
   pointer-events: none;
 }
 .portrait .silhouette {
@@ -766,7 +794,7 @@ p {
   text-align: center;
   z-index: 2;
   font:
-    10px 'Courier New',
+    10px "Courier New",
     monospace;
   letter-spacing: 2px;
   color: #a2a5a8;
@@ -776,7 +804,7 @@ p {
   top: 29px;
   left: 29px;
   font:
-    11px 'Courier New',
+    11px "Courier New",
     monospace;
   letter-spacing: 2px;
   color: #b0b3b6;
@@ -868,7 +896,7 @@ p {
   margin-bottom: 13px;
 }
 .pricing-card li:before {
-  content: '+';
+  content: "+";
   color: var(--accent);
   margin-right: 12px;
 }
@@ -1023,7 +1051,13 @@ p {
 .about-mark {
   height: 280px;
   border: 1px solid var(--line);
-  background: repeating-linear-gradient(135deg, #181a1c, #181a1c 10px, #1b1d1f 10px, #1b1d1f 11px);
+  background: repeating-linear-gradient(
+    135deg,
+    #181a1c,
+    #181a1c 10px,
+    #1b1d1f 10px,
+    #1b1d1f 11px
+  );
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1233,7 +1267,7 @@ noscript {
   letter-spacing: 1px;
 }
 .nav-status:before {
-  content: '';
+  content: "";
   display: inline-block;
   width: 5px;
   height: 5px;
@@ -1557,7 +1591,8 @@ noscript {
 /* รีวิวลูกค้า: สามกล่องในธีมดำ–ส้ม */
 .reviews-section {
   border-block: 1px solid var(--line);
-  background: radial-gradient(ellipse at 50% 0%, #ff65370a, transparent 65%), var(--bg);
+  background:
+    radial-gradient(ellipse at 50% 0%, #ff65370a, transparent 65%), var(--bg);
 }
 .reviews-heading {
   margin-bottom: 42px;
@@ -1701,7 +1736,13 @@ noscript {
 }
 #team .team-camera::after {
   z-index: 1;
-  background: linear-gradient(180deg, #0006, transparent 28%, transparent 72%, #0009);
+  background: linear-gradient(
+    180deg,
+    #0006,
+    transparent 28%,
+    transparent 72%,
+    #0009
+  );
 }
 .camera-hud {
   position: absolute;
@@ -1710,7 +1751,7 @@ noscript {
   pointer-events: none;
   color: #fff;
   font:
-    10px/1.4 'Courier New',
+    10px/1.4 "Courier New",
     monospace;
   letter-spacing: 1.5px;
   text-shadow: 0 1px 5px #000;
@@ -1757,4 +1798,482 @@ noscript {
   transform: translate(-50%, -50%);
   border: 1px solid #ffffff40;
   border-radius: 3px;
+}
+
+/* Original fictional character portraits */
+.character-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+}
+.character-portrait .portrait-id {
+  z-index: 1;
+  background: #101112b3;
+  padding: 4px 8px;
+}
+.modal .character-portrait {
+  height: 320px;
+}
+.price small {
+  display: block;
+}
+
+.character-portrait img {
+  position: absolute;
+  width: 300%;
+  max-width: none;
+  height: 200%;
+  object-fit: fill;
+  top: 0;
+  left: 0;
+}
+.character-portrait img[src$="#guard-01"] {
+  left: 0%;
+  top: 0%;
+}
+.character-portrait img[src$="#guard-02"] {
+  left: -100%;
+  top: 0%;
+}
+.character-portrait img[src$="#guard-03"] {
+  left: -200%;
+  top: 0%;
+}
+.character-portrait img[src$="#guard-04"] {
+  left: 0%;
+  top: -100%;
+}
+.character-portrait img[src$="#guard-05"] {
+  left: -100%;
+  top: -100%;
+}
+.character-portrait img[src$="#guard-06"] {
+  left: -200%;
+  top: -100%;
+}
+
+/* Preserve square panel proportions at every card width. */
+.character-portrait img {
+  height: auto;
+}
+.character-portrait img[src$="#guard-04"] {
+  top: 0;
+  transform: translateY(-50%);
+}
+.character-portrait img[src$="#guard-05"] {
+  top: 0;
+  transform: translateY(-50%);
+}
+.character-portrait img[src$="#guard-06"] {
+  top: 0;
+  transform: translateY(-50%);
+}
+
+/* Local QR asset shown only after a simulated purchase is confirmed. */
+.demo-purchase-qr {
+  margin: 24px auto 16px;
+}
+.demo-purchase-qr img {
+  display: block;
+  width: 256px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 12px;
+  background: #fff;
+}
+.demo-purchase-qr figcaption {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Three square game-character portraits in one horizontal image atlas. */
+.review-avatar {
+  position: relative;
+  overflow: hidden;
+  background: #222;
+}
+.review-avatar img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300%;
+  max-width: none;
+  height: 100%;
+}
+.review-avatar img[src$="#review-2"] {
+  left: -100%;
+}
+.review-avatar img[src$="#review-3"] {
+  left: -200%;
+}
+
+/* Game-character atlas reused for the protection team. */
+.character-portrait img[src*="#agent-"] {
+  top: 0;
+  transform: none;
+}
+.character-portrait img[src$="#agent-1"] {
+  left: 0%;
+}
+.character-portrait img[src$="#agent-2"] {
+  left: -100%;
+}
+.character-portrait img[src$="#agent-3"] {
+  left: -200%;
+}
+
+/* Additional bodyguards from a three-panel square portrait atlas. */
+.character-portrait img[src*="#extra-"] {
+  top: 0;
+  transform: none;
+}
+.character-portrait img[src$="#extra-1"] {
+  left: 0%;
+}
+.character-portrait img[src$="#extra-2"] {
+  left: -100%;
+}
+.character-portrait img[src$="#extra-3"] {
+  left: -200%;
+}
+
+/* Specialist portraits in a horizontal three-panel atlas. */
+.character-portrait img[src*="#specialist-"] {
+  top: 0;
+  transform: none;
+}
+.character-portrait img[src$="#specialist-1"] {
+  left: 0%;
+}
+.character-portrait img[src$="#specialist-2"] {
+  left: -100%;
+}
+.character-portrait img[src$="#specialist-3"] {
+  left: -200%;
+}
+
+.guard-card {
+  display: flex;
+  flex-direction: column;
+}
+.guard-card > .portrait {
+  flex-shrink: 0;
+}
+.guard-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.guard-body > .chip {
+  align-self: flex-start;
+}
+.guard-bottom {
+  margin-top: auto;
+  justify-content: flex-end;
+}
+
+/* หน้ารายละเอียด QR สไตล์ PromptPay: ใช้ไฟล์และปลายทาง QR เดิม */
+.success-panel.payment-panel {
+  padding: 0 0 24px;
+  overflow: hidden;
+  border: 1px solid #1c4269;
+  border-radius: 6px;
+  background: #fff;
+  color: #17324f;
+  text-align: center;
+}
+.payment-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 22px 20px 20px;
+  background: linear-gradient(135deg, #103553, #075c87);
+  color: #fff;
+}
+.payment-network {
+  font:
+    700 12px/1.4 Arial,
+    sans-serif;
+  letter-spacing: 3px;
+}
+.payment-brand {
+  font:
+    700 35px/1.2 Arial,
+    sans-serif;
+  letter-spacing: -1.5px;
+}
+.payment-brand > span {
+  color: #69d4ef;
+}
+.payment-caption {
+  font-size: 12px;
+  letter-spacing: 1px;
+  opacity: 0.85;
+}
+.payment-content {
+  padding: 25px 24px 0;
+}
+.payment-merchant {
+  display: block;
+  font:
+    700 10px/1.5 Arial,
+    sans-serif;
+  letter-spacing: 1.5px;
+  color: #60758b;
+}
+.payment-panel #successHeading {
+  margin: 10px 0 12px;
+  font-size: 22px;
+}
+.payment-panel #bookingSummary {
+  color: #53677d;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.payment-panel .demo-purchase-qr {
+  width: min(100%, 290px);
+  margin: 20px auto 15px;
+}
+.payment-panel .demo-purchase-qr img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto 10px;
+}
+.payment-panel .demo-purchase-qr figcaption {
+  color: #53677d;
+  font-size: 12px;
+}
+.payment-panel .payment-recipient {
+  margin: 12px 0 22px;
+  color: #17324f;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.payment-panel > .btn {
+  min-width: 150px;
+  border-color: #173e63;
+  color: #173e63;
+}
+.payment-panel > .btn:hover {
+  background: #173e63;
+  color: #fff;
+}
+@media (max-width: 575.98px) {
+  .payment-content {
+    padding: 20px 16px 0;
+  }
+  .payment-banner {
+    padding: 18px 16px;
+  }
+  .payment-brand {
+    font-size: 30px;
+  }
+}
+
+/* แบ่งรายการบอดี้การ์ดเป็นชุดละ 9 คน */
+.guard-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 38px;
+}
+.guard-pagination[hidden],
+#guardGrid > [hidden] {
+  display: none !important;
+}
+#guardsPageStatus {
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+.guard-pagination .btn {
+  min-height: 44px;
+  padding: 12px 18px;
+  font-size: 13px;
+}
+.guard-pagination .btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.character-portrait.single-portrait img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  transform: none;
+  object-fit: cover;
+  object-position: center 25%;
+}
+@media (max-width: 575.98px) {
+  #guardsPageStatus {
+    width: 100%;
+    order: -1;
+  }
+  .guard-pagination {
+    gap: 12px;
+  }
+}
+.guard-pagination .btn-primary:disabled {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #101112;
+}
+
+/* ภาพสูทที่จัดองค์ประกอบ 4:5 แล้ว ใช้ภาพเต็มโดยไม่ซูมหรือเลื่อนจุดครอปเดิม */
+#team .row > :nth-child(n) .team-camera.suit-portrait > img {
+  transform: none;
+  object-position: center;
+}
+
+/* ภาพไคโตะและฉากลับ: กดรูปเพื่อเปิด ส่วนปุ่มโปรไฟล์ยังใช้งานตามเดิม */
+.kaito-portrait-trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: #080e18;
+  cursor: pointer;
+}
+.character-portrait.single-portrait .kaito-portrait-trigger > img {
+  object-fit: contain;
+  object-position: center;
+  background: #080e18;
+  transition: filter 200ms ease;
+}
+.kaito-portrait-trigger:hover img {
+  filter: brightness(1.15);
+}
+.kaito-portrait-trigger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -5px;
+}
+.kaito-egg {
+  position: fixed;
+  inset: 0;
+  width: min(82vw, 1000px);
+  max-width: none;
+  height: fit-content;
+  max-height: 76dvh;
+  margin: auto;
+  padding: 8px;
+  overflow: hidden;
+  border: 1px solid #9ebeff45;
+  border-radius: 16px;
+  background: radial-gradient(ellipse at center, #102540, #030810 90%);
+  box-shadow:
+    0 0 65px #428cdd30,
+    0 25px 90px #000b,
+    inset 0 0 18px #8bbcff12;
+  color: #fff;
+}
+.kaito-egg[open] {
+  animation: kaito-reveal 450ms ease both;
+}
+.kaito-egg::backdrop {
+  background: #000e;
+  animation: kaito-darken 450ms ease both;
+}
+.kaito-egg.is-closing {
+  animation: kaito-hide 400ms ease both;
+}
+.kaito-egg.is-closing::backdrop {
+  animation: kaito-lighten 400ms ease both;
+}
+.kaito-egg-film {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(76dvh - 18px);
+  object-fit: contain;
+  object-position: center;
+  border-radius: 10px;
+  mask-image:
+    linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent),
+    linear-gradient(180deg, transparent, #000 6%, #000 94%, transparent);
+  mask-composite: intersect;
+}
+.kaito-egg-close {
+  position: absolute;
+  z-index: 2;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid #ffffff40;
+  border-radius: 50%;
+  background: #0009;
+  color: #fff;
+  font:
+    26px/1 Arial,
+    sans-serif;
+  cursor: pointer;
+}
+.kaito-egg-close:hover {
+  background: #173653;
+}
+@keyframes kaito-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes kaito-hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes kaito-darken {
+  from {
+    background: #0000;
+  }
+  to {
+    background: #000e;
+  }
+}
+@keyframes kaito-lighten {
+  from {
+    background: #000e;
+  }
+  to {
+    background: #0000;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kaito-egg[open],
+  .kaito-egg::backdrop,
+  .kaito-egg.is-closing,
+  .kaito-egg.is-closing::backdrop {
+    animation: none;
+  }
+  .kaito-portrait-trigger > img {
+    transition: none;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .kaito-egg {
+    width: 92vw;
+    padding: 5px;
+    border-radius: 12px;
+  }
 }
