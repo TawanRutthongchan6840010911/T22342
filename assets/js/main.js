@@ -25,7 +25,9 @@
       escapeHtml(guard.name) +
       '" loading="lazy" width="512" height="768" />';
     const content = guard.easterEgg
-      ? '<button type="button" class="kaito-portrait-trigger" data-kaito-egg aria-label="ภาพ ' +
+      ? '<button type="button" class="kaito-portrait-trigger" data-kaito-egg="' +
+        escapeHtml(guard.id) +
+        '" aria-label="ภาพ ' +
         escapeHtml(guard.name) +
         '">' +
         image +

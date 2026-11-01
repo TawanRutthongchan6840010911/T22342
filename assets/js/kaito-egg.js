@@ -39,6 +39,16 @@
   document.addEventListener("click", (event) => {
     const trigger = event.target.closest("[data-kaito-egg]");
     if (!trigger || dialog.open) return;
+    const guard = window.AEGIS_DATA.guards.find(
+      (item) => item.id === (trigger.dataset.kaitoEgg || "10"),
+    );
+    if (!guard?.easterEgg) return;
+    dialog.setAttribute("aria-label", "ฉากลับของ" + guard.name);
+    film.alt = guard.name + " ในฉากพิเศษ";
+    dialog.classList.toggle(
+      "is-square-egg",
+      guard.easterEggLayout === "square",
+    );
     opener = trigger;
     previousOverflow = document.body.style.overflow;
     // อยู่ภายในหน้าต่างเดิม เพื่อให้การควบคุมโฟกัสของ Bootstrap ทำงานร่วมกันได้
@@ -48,10 +58,13 @@
     closeButton.focus({ preventScroll: true });
     film.onload = () => {
       clearTimeout(timer);
-      timer = window.setTimeout(closeScene, 5800);
+      timer = window.setTimeout(closeScene, guard.easterEggDuration || 5800);
     };
     film.onerror = closeScene;
-    film.src = "assets/media/plan-background.gif?kaito=" + Date.now();
+    film.src =
+      (guard.easterEggMedia || "assets/media/plan-background.gif") +
+      "?scene=" +
+      Date.now();
     // สำรองกรณีไฟล์โหลดช้าหรือไม่ตอบกลับ
     timer = window.setTimeout(closeScene, 15000);
   });

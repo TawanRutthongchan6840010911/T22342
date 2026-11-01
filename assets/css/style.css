@@ -2277,3 +2277,41 @@ noscript {
     border-radius: 12px;
   }
 }
+
+/* ชุดบอดี้การ์ด 10–15: กรอบภาพสูงขึ้นให้ใบหน้าและหมวกอยู่ครบ */
+#guardGrid > :nth-child(n + 10) .portrait {
+  height: 320px;
+}
+.character-portrait.single-portrait img[src*="/guard-"] {
+  filter: saturate(0.72) contrast(1.08) brightness(0.88);
+  object-position: center 15%;
+}
+.character-portrait.single-portrait img[src$="/guard-11.webp"] {
+  object-position: center 12%;
+}
+.character-portrait.single-portrait img[src$="/guard-12.jpg"] {
+  object-position: center 8%;
+}
+.character-portrait.single-portrait img[src$="/guard-13.webp"] {
+  object-position: center 5%;
+  filter: saturate(0.88) contrast(1.08) brightness(0.95);
+}
+.character-portrait.single-portrait img[src$="/guard-14.webp"] {
+  object-position: center 15%;
+}
+.character-portrait.single-portrait img[src$="/guard-15.jpg"] {
+  object-position: center;
+}
+#guardGrid > :nth-child(n + 11) .portrait::after {
+  background: linear-gradient(180deg, #06132218, transparent 45%, #03081066);
+}
+@media (max-width: 575.98px) {
+  #guardGrid > :nth-child(n + 10) .portrait {
+    height: 340px;
+  }
+}
+
+/* ฉาก GIF สี่เหลี่ยมจัตุรัส แสดงครบโดยไม่ยืดภาพ */
+.kaito-egg.is-square-egg {
+  width: min(82vw, 540px, calc(76dvh - 18px));
+}
